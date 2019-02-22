@@ -22,11 +22,11 @@ public class RESTClient {
 		return sb.toString();
 	}
 
-	public static String get(Routes route) throws IOException {
+	public static String get(Routes route, String a) throws IOException {
 		String response = null;
 		HttpURLConnection conn = null;
 		try {
-			URL url = new URL(route.getRoute());
+			URL url = new URL(route.getRoute(a));
 			conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");

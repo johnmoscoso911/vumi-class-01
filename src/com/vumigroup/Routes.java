@@ -10,7 +10,7 @@ public enum Routes {
 	USERS("users");
 
 	public static final String URL = "https://jsonplaceholder.typicode.com/%s";
-	
+
 	private String route;
 
 	private Routes(String r) {
@@ -19,5 +19,10 @@ public enum Routes {
 
 	public String getRoute() {
 		return String.format(URL, route);
+	}
+
+	public String getRoute(String t) {
+		return String.format(URL, //
+				String.format("%s%s", route, t == null ? "" : "/".concat(t)));
 	}
 }
