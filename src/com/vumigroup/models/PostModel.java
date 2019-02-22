@@ -2,6 +2,7 @@ package com.vumigroup.models;
 
 public class PostModel {
 	private int userId;
+	@IDField
 	private int id;
 	private String title;
 	private String body;
