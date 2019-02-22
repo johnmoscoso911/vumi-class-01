@@ -1,6 +1,8 @@
 package com.vumigroup.services;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -14,9 +16,20 @@ public class JSONUtil<T> {
 		this.clazz = c;
 	}
 
-	public T convert(String response) throws JsonParseException, JsonMappingException, IOException {
+	public T toObject(String response) throws JsonParseException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		return mapper.readValue(response, clazz);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<T> toList(String response)
+			throws ClassNotFoundException, JsonParseException, JsonMappingException, IOException {
+
+		Class<?> obj = Class.forName(String.format("[L%s;", clazz.getTypeName()));
+
+		ObjectMapper mapper = new ObjectMapper();
+		T[] array = (T[]) mapper.readValue(response, obj);
+		return Arrays.asList(array);
 	}
 
 }
