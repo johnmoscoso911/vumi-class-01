@@ -7,9 +7,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class RESTClient {
+import com.vumigroup.Routes;
 
-	public static final String URL = "https://jsonplaceholder.typicode.com/posts";
+public class RESTClient {
 
 	static String processResponse(InputStream in) throws IOException {
 		StringBuilder sb = new StringBuilder();
@@ -22,11 +22,11 @@ public class RESTClient {
 		return sb.toString();
 	}
 
-	public static String get(String route) throws IOException {
+	public static String get(Routes route) throws IOException {
 		String response = null;
 		HttpURLConnection conn = null;
 		try {
-			URL url = new URL(route);
+			URL url = new URL(route.getRoute());
 			conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");

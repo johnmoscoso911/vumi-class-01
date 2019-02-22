@@ -10,7 +10,7 @@ public class Run {
 		//
 		System.out.println("Hola VUMI");
 		try {
-			System.out.println(RESTClient.get(RESTClient.URL));
+			System.out.println(RESTClient.get(Routes.COMMENTS));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
